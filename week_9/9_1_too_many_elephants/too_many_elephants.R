@@ -23,7 +23,7 @@ getGradient <- function(dir, fname){
   path = sprintf("%s%s", dir, fname)
   df <- read.csv(path) # read the data file like you did in last week's workshop
   fit <- lm(weight_kg ~ time_months, data = df) # create a linear model
-  return(c(fname, fit$coeff[2])) # return the filename and gradient as a vector, i.e. (fname, gradient)
+  return(fit$coeff[2]) # return the filename and gradient as a vector, i.e. (fname, gradient)
 }
 
 # Test your function using a filename
@@ -37,11 +37,11 @@ gradVals <- c()
 
 # loop through your "files" list like this ...
 for (file in files) {
-  fileGrads <- getGradient(dir, file) # for each file call the "getGradient" gradient function
-  gradVal <- c(gradVal, as.numeric(fileGrad[2])) # add the calculate gradient to the gradVal vector
+  fileGrad <- getGradient(dir, file) # for each file call the "getGradient" gradient function
+  gradVals <- c(gradVals, as.numeric(fileGrad[2])) # add the calculate gradient to the gradVal vector
 }
 
-max(gradVasl) # tells us the maximum gradient
+max(gradVals) # tells us the maximum gradient
 which.max(gradVals) # tells us the index of the maximum value
 
 # we can use this index to tell us the filename the corresponds to the file with the
