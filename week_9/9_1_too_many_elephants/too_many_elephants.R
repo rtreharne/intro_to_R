@@ -38,7 +38,7 @@ gradVals <- c()
 # loop through your "files" list like this ...
 for (file in files) {
   fileGrad <- getGradient(dir, file) # for each file call the "getGradient" gradient function
-  gradVals <- c(gradVals, as.numeric(fileGrad[2])) # add the calculate gradient to the gradVal vector
+  gradVals <- c(gradVals, fileGrad) # add the calculate gradient to the gradVal vector
 }
 
 max(gradVals) # tells us the maximum gradient
