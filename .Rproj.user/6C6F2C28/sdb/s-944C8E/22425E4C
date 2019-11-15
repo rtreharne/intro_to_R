@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "dir = \"week_9/9_1_too_many_elephants/lots_of_elephants/\"\n\nfiles <- list.files(dir)\n\ngetGradient <- function(fname){\n  path = sprintf(\"%s%s\", dir, fname)\n  df <- read.csv(path)\n  fit <- lm(weight_kg ~ time_months, data = df)\n  return(c(fname, fit$coeff[2]))\n}\n\ngradVal <- c()\n\nfor (file in files) {\n  fit <- getGradient(file)\n  print(as.numeric(fit[2]))\n  gradVal <- c(gradVal, as.numeric(fit[2]))\n}\n\nmax(gradVal)\nwhich.max(gradVal)\nfiles[which.max(gradVal)]\n",
+    "created" : 1573806635746.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1141471072",
+    "id" : "22425E4C",
+    "lastKnownWriteTime" : 1573807371,
+    "last_content_update" : 1573807441052,
+    "path" : "~/Documents/intro_to_R/week_9/9_1_too_many_elephants/too_many_elephants.R",
+    "project_path" : "week_9/9_1_too_many_elephants/too_many_elephants.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
