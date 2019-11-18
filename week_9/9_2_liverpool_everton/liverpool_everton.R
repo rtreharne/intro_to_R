@@ -14,7 +14,7 @@
 # Task 3: Read the data file "fan_data.csv" to a dataframe
 fanHeights <- read.csv("week_9/9_2_liverpool_everton/fan_data.csv")
 
-# Task 3: Find the mean, median, range and standard deviation of the data
+# Task 4: Find the mean, median, range and standard deviation of the data
 
 # There are lots of ways you can do this in R.
 # The best way (I find) is to use the "describe" function from the psych package
@@ -24,28 +24,27 @@ library(psych)
 # Then you can run the describe function on your data frame
 describe(fanHeights)
 
-# You can also use th describeBy function to get the descriptive statistics for Liverpool and Everton fans seperately!
+# Task 5: You can also use th describeBy function to get the descriptive statistics for Liverpool and Everton fans seperately!
 describeBy(fanHeights, fanHeights$Team)
 
-# Task 4: Take a subsample of your fanHeights using the line below
-
+# Task 6: Take a subsample of your fanHeights using the line below
 mysample <- fanHeights[sample(nrow(fanHeights), 50), ]
+
+# How do your descriptive stats change?
 describeBy(mysample, mysample$Team)
 
-# Task 5: Plot a histogram of your data
+# Task 7: Plot a histogram of your data
 # Don't forget to give your plot a title and label your axes accordingly
 hist(fanHeights$Height_cm,
      main="Histogram of fan heights from a Liverpool Vs Everton match",
      xlab="Height (cm)")
 
-# Task 6: Re-plot your histogram to show Density instead of Frequency and add a normal distribution curve to the plot.
+# Task 8: Re-plot your histogram to show Density instead of Frequency and add a normal distribution curve to the plot.
 
 hist(fanHeights$Height_cm, 
      freq = F,
      main = "Height of a sample (N=2000) of fans from Liverpool vs Everton Match",
      xlab = "Height (cm)")
-
-
 
 lines(seq(100, 240, by=1), 
       dnorm(seq(100, 240, by=1),
@@ -58,8 +57,3 @@ boxplot(Height_cm~Team,
         data = fanHeights,
         ylab = "Height (cm)",
           main="Box plots of Everton Vs Liverpool fans.")
-
-liverpool <- fanHeights[which(fanHeights$Team == "Liverpool"),]$Height_cm
-everton <- fanHeights[which(fanHeights$Team == "Everton"),]$Height_cm
-
-t.test(liverpool, everton)
