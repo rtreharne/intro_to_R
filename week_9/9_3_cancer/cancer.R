@@ -12,41 +12,53 @@ colnames(wdbc) <- c("ID",
                     "concavity",
                     "concave points",
                     "symmetry",
-                    "fractal dimension")
+                    "fractal_dimension")
 
 
-attach(wdbc)
+slice <- wdbc[1:12]
 
-hist(radius,
-     xlim = c(5, 30))
+hist(wdbc$radius,
+     xlim = c(5, 30),
+     freq = F)
 
-shapiro.test(radius_mean)
+shapiro.test(wdbc$radius)
 
-malignant <- df[which(df$diagnosis == "M"),]
-benign <- df[which(df$diagnosis == "B"),]
+help(shapiro.test)
+
+malignant <- wdbc[which(wdbc$Diagnosis == "M"),]
+benign <- wdbc[which(wdbc$Diagnosis == "B"),]
 
 
 
-boxplot(compactness~diagnosis, 
-        data = df)
+boxplot(radius~Diagnosis, 
+        data = wdbc)
 
-hist(wdbc$`fractal dimension`)
+hist(wdbc$fractal_dimension)
 
-hist(benign$area_mean)
+hist(benign$area)
 
-t.test(malignant$area_mean, benign$area_mean)
+t.test(malignant$area, benign$area)
 
 library(psych)
-describeBy(df, df$diagnosis)
+describe(slice)
+describeBy(slice, slice$Diagnosis)
 
-plot(benign$radius_mean, benign$fractal_dimension_mean, col="red",
-     xlim=c(5, 30))
-points(malignant$radius_mean, malignant$fractal_dimension_mean, col="green")
+plot(benign$radius, benign$fractal, col="green",
+     xlim=c(5, 30),
+     ylim=c(0.045, 0.1),
+     xlab="Radius Mean (micron)",
+     ylab="Fractal Dimension Mean (No Units)",
+     main="Fractal dimension mean Vs Radius mean.")
+points(malignant$radius, malignant$fractal_dimension, col="red")
 
-write.csv(describeBy(df, df$diagnosis)[1], "malignant_summary.csv")
+legend(23, 0.1,
+       c("Benign", "Malignant"),
+       col=c("green", "red"),
+       pch=1)
+write.csv(describeBy(wdbc, wdbc$Diagnosis)[1], "week_9/9_3_cancer/malignant_summary.csv")
 
-plot(malignant$area_mean, malignant$texture_mean, col="red")
-points(benign$area_mean, benign$texture_mean, col="green")
+plot(malignant$area, malignant$texture, col="red")
+points(benign$area, benign$texture, col="green")
 legend(2000, 0.09, 
        c("Malignant", "Benign"),
        col=c("red", "green"),
