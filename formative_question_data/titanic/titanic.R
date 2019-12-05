@@ -24,9 +24,9 @@ third_surv_pc = 100*nrow(subset(df, Survived == 1 & Age <18 & Pclass == 3))/nrow
 first_surv_pc = 100*nrow(subset(df, Survived == 1 & Age <18 & Pclass == 1))/nrow(subset(df, Age <18 & Pclass == 1))
 
 # What is the difference in the mean adult fares between first and second class?
-first_fare = subset(df, Parents.Children.Aboard != 1 & Pclass == 1)
+first_fare = subset(df, Age>=18 & Pclass == 1)
 mean(first_fare$Fare)
-not_first_fare = subset(df, Parents.Children.Aboard !=1 & Pclass == 2)
+not_first_fare = subset(df, Age>=18 & Pclass == 2)
 mean(not_first_fare$Fare)
 mean(first_fare$Fare) - mean(not_first_fare$Fare)
 
