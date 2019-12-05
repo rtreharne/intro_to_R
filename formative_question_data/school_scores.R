@@ -2,7 +2,7 @@ df <- read.csv("formative_question_data/school_scores.csv")
 
 # 1. Which school has the highest mean score for English
 
-which.max(by(df$English, df$School, mean))
+max(by(df$English, df$School, mean))
 
 # 2. Which area has the lowest mean score for Science
 which.min(by(df$Maths, df$Area, median))
