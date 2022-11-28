@@ -17,7 +17,11 @@ fanHeights <- read.csv("week_9/9_2_liverpool_everton/fan_data.csv")
 # Task 4: Find the mean, median, range and standard deviation of the data
 
 # There are lots of ways you can do this in R.
-# The best way (I find) is to use the "describe" function from the psych package
+# The best way (I find) is to use the "describe" function from the psych package.
+
+# To install the psych package run the line:
+install.packages("psych")
+
 # To include the psych package run the line:
 library(psych)
 
