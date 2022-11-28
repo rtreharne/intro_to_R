@@ -28,8 +28,14 @@ library(psych)
 # Then you can run the describe function on your data frame
 describe(fanHeights)
 
+# An easier way of doing this (that doesn't involve installing any packages) is using the function:
+summary(fanHeights)
+
 # Task 5: You can also use th describeBy function to get the descriptive statistics for Liverpool and Everton fans seperately!
 describeBy(fanHeights, fanHeights$Team)
+
+#An esieier way of doing this (that doesn't involve using the psych package) is using the function:
+by(fanHeights, fanHeights$Team, summary)
 
 # Task 6: Take a subsample of your fanHeights using the line below
 mysample <- fanHeights[sample(nrow(fanHeights), 50), ]
